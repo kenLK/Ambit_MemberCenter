@@ -14,11 +14,9 @@
 #import "APTGViewController.h"
 #import "AmbitLoginViewController.h"
 #import "AmbitRegisterViewController.h"
+#import "OpenIDFacebookLoginViewController.h"
 #import "AppDelegate.h"
 
-#import <Accounts/Accounts.h>
-#import <Accounts/AccountsDefines.h>
-#import <Social/Social.h>
 
 @interface ViewController : UIViewController<FBLoginViewDelegate,UIWebViewDelegate>
 //UIApplicationDelegate,UIWebViewDelegate>

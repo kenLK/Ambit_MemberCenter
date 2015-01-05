@@ -17,6 +17,7 @@
 		3311D26A1A0A267A004259CA /* GoogleOpenSource.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3311D2671A0A2679004259CA /* GoogleOpenSource.framework */; };
 		3311D26B1A0A267A004259CA /* GooglePlus.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3311D2681A0A267A004259CA /* GooglePlus.bundle */; };
 		3311D26C1A0A267A004259CA /* GooglePlus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3311D2691A0A267A004259CA /* GooglePlus.framework */; };
+		3328E4231A5A3AD3004AA160 /* OpenIDFacebookLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3328E4221A5A3AD3004AA160 /* OpenIDFacebookLoginViewController.m */; };
 		333642BB1A16085500229459 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 333642BA1A16085500229459 /* Social.framework */; };
 		3337B03919F5F84F00A24624 /* OpenIDBundlingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3337B03819F5F84F00A24624 /* OpenIDBundlingViewController.m */; };
 		335B3F1A1A39B47700C1B0E9 /* APTGViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 335B3F191A39B47700C1B0E9 /* APTGViewController.m */; };
@@ -72,6 +73,8 @@
 		3311D2671A0A2679004259CA /* GoogleOpenSource.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleOpenSource.framework; sourceTree = "<group>"; };
 		3311D2681A0A267A004259CA /* GooglePlus.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = GooglePlus.bundle; sourceTree = "<group>"; };
 		3311D2691A0A267A004259CA /* GooglePlus.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GooglePlus.framework; sourceTree = "<group>"; };
+		3328E4211A5A3AD3004AA160 /* OpenIDFacebookLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenIDFacebookLoginViewController.h; sourceTree = "<group>"; };
+		3328E4221A5A3AD3004AA160 /* OpenIDFacebookLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenIDFacebookLoginViewController.m; sourceTree = "<group>"; };
 		333642BA1A16085500229459 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		3337B03719F5F84F00A24624 /* OpenIDBundlingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenIDBundlingViewController.h; sourceTree = "<group>"; };
 		3337B03819F5F84F00A24624 /* OpenIDBundlingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenIDBundlingViewController.m; sourceTree = "<group>"; };
@@ -183,6 +186,8 @@
 				33ED316519EE019B0017E7E9 /* AmbitRegisterViewController.xib */,
 				3337B03719F5F84F00A24624 /* OpenIDBundlingViewController.h */,
 				3337B03819F5F84F00A24624 /* OpenIDBundlingViewController.m */,
+				3328E4211A5A3AD3004AA160 /* OpenIDFacebookLoginViewController.h */,
+				3328E4221A5A3AD3004AA160 /* OpenIDFacebookLoginViewController.m */,
 			);
 			path = MCMemberCenter;
 			sourceTree = "<group>";
@@ -347,6 +352,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				33ED315819EC2DE00017E7E9 /* BundlingViewController.m in Sources */,
+				3328E4231A5A3AD3004AA160 /* OpenIDFacebookLoginViewController.m in Sources */,
 				330FB71719E264A30015D20A /* ViewController.m in Sources */,
 				33ED316619EE019B0017E7E9 /* AmbitRegisterViewController.m in Sources */,
 				335B3F1A1A39B47700C1B0E9 /* APTGViewController.m in Sources */,
@@ -484,6 +490,7 @@
 				INFOPLIST_FILE = MCMemberCenter/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -503,6 +510,7 @@
 				INFOPLIST_FILE = MCMemberCenter/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
