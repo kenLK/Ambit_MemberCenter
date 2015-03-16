@@ -56,7 +56,7 @@
     MCLogger(@"FBLogin>>>>>>>>>>>>>INTO>>>>>>>>>>>>>>");
 
 //  取得facebook用戶資料
-    [mcFacebook getUserInfoWithSuccess:^(id responseObject) {
+    /*[mcFacebook getUserInfoWithSuccess:^(id responseObject) {
                         NSDictionary *user = (NSDictionary*)responseObject;
                         
                         //  login MC
@@ -116,83 +116,68 @@
                     failure:^(NSError *error) {
                      
                     }];
+    */
     MCLogger(@"FBLogin>>>>>>>>>>>>>END>>>>>>>>>>>>>>");
 }
     
 
 - (IBAction)facebook2Step:(id)sender {
-    
+    //  登入facebook用戶資料
     [mcFacebook login:^(id responseObject) {
 
         
         //  取得facebook用戶資料
                     [mcFacebook getUser:^(id responseObject) {
-                        NSDictionary *user = (NSDictionary*)responseObject;
 
+                        NSData* responseData = (NSData*)responseObject;
+                        MCLogger(@"%@",[[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding]);
                         
-                        //  login MC
-                        if (user) {
-                            MCLogin* mcl = [[MCLogin alloc] init];
-                            NSString* EMAIL = [user objectForKey:@"email"];
-                            NSString* OPEN_UID = [user objectForKey:@"id"];
-                            [mcl GetAmbitUserInfoViaOpenID:EMAIL
-                                                   openUID:OPEN_UID
-                                                login_type:LOGIN_TYPE_FACEBOOK
-                                                     sysID:@"OTT_ARDI"
-                                                   success:^(id responseObject) {
-                                                       NSData* responseData = (NSData*)responseObject;
-                                                       MCLogger(@"%@",[[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding]);
-                                                       
-                                                       
-                                                       NSDictionary *resultJSON = [NSJSONSerialization JSONObjectWithData:responseData options:kNilOptions error:nil];
-                                                       
-                                                       if ([[resultJSON objectForKey:@"returnCode"] isEqual:@"-429"]) {
-                                                           
-                                                           MCLogger(@"FBLogin>>>>>>>>>>>>>-429>>>>>>>>>>>>>>");
-                                                           
-                                                           NSDictionary *dict = [[NSDictionary alloc] initWithObjectsAndKeys:EMAIL, @"EMAIL", @"OTT_ARDI", @"SYS_ID",LOGIN_TYPE_FACEBOOK,@"LOGIN_TYPE",OPEN_UID,@"LOGIN_UID",[resultJSON objectForKey:@"VALID_STR"],@"VALID_STR",[resultJSON objectForKey:@"CHECK_DATE"],@"CHECK_DATE", nil];
-                                                           
-                                                           RegisterViewController* reg = [[RegisterViewController alloc] init];
-                                                           [reg setResultJason:dict];
-                                                           
-                                                           UIViewController* rootViewController = [[UIApplication sharedApplication].keyWindow rootViewController];
-                                                           MCLogger(@"FBLogin>>>>>>>>>>>>>presentViewController>>>>>>>>>>>>>>");
-                                                           [rootViewController presentViewController:reg animated:YES completion:^{}];
-                                                           
-                                                           
-                                                       }
-                                                       if ([[resultJSON objectForKey:@"returnCode"] isEqual:@"-430"]) {
-                                                           
-                                                           MCLogger(@"FBLogin>>>>>>>>>>>>>-430>>>>>>>>>>>>>>");
-                                                           
-                                                           OpenIDBundlingViewController* reg = [[OpenIDBundlingViewController alloc] init];
-                                                           
-                                                           
-                                                           NSDictionary *dict = [[NSDictionary alloc] initWithObjectsAndKeys:EMAIL, @"EMAIL", @"OTT_ARDI", @"SYS_ID",LOGIN_TYPE_FACEBOOK,@"LOGIN_TYPE",OPEN_UID,@"LOGIN_UID",[resultJSON objectForKey:@"VALID_STR"],@"VALID_STR",[resultJSON objectForKey:@"CHECK_DATE"],@"CHECK_DATE", nil];
-                                                           
-                                                           [reg setResultJason:dict];
-                                                           
-                                                           UIViewController* rootViewController = [[UIApplication sharedApplication].keyWindow rootViewController];
-                                                           MCLogger(@"FBLogin>>>>>>>>>>>>>presentViewController>>>>>>>>>>>>>>");
-                                                           [rootViewController presentViewController:reg animated:YES completion:^{}];
-                                                           
-                                                           
-                                                       }
-                                                   } failure:^(NSError *error) {
-                                                       
-                                                   }];
+                        
+                        NSDictionary *resultJSON = [NSJSONSerialization JSONObjectWithData:responseData options:kNilOptions error:nil];
+                        MCLogger(@"%@",[resultJSON objectForKey:@"returnCode"]);
+                        //mc 註冊
+                        if ([[resultJSON objectForKey:@"returnCode"] isEqual:@"-429"]) {
+                            
+                            MCLogger(@"FBLogin>>>>>>>>>>>>>-429>>>>>>>>>>>>>>");
+                            
+                            NSDictionary *dict = [[NSDictionary alloc] initWithObjectsAndKeys:mcFacebook.email, @"EMAIL", @"OTT_ARDI", @"SYS_ID",LOGIN_TYPE_FACEBOOK,@"LOGIN_TYPE",mcFacebook.facebookID,@"LOGIN_UID",[resultJSON objectForKey:@"VALID_STR"],@"VALID_STR",[resultJSON objectForKey:@"CHECK_DATE"],@"CHECK_DATE", nil];
+                            
+                            RegisterViewController* reg = [[RegisterViewController alloc] init];
+                            [reg setResultJason:dict];
+                            
+                            UIViewController* rootViewController = [[UIApplication sharedApplication].keyWindow rootViewController];
+                            MCLogger(@"FBLogin>>>>>>>>>>>>>presentViewController>>>>>>>>>>>>>>");
+                            [rootViewController presentViewController:reg animated:YES completion:^{}];
+                            
                             
                         }
+                        //mc 綁定
+                        if ([[resultJSON objectForKey:@"returnCode"] isEqual:@"-430"]) {
+                            
+                            MCLogger(@"FBLogin>>>>>>>>>>>>>-430>>>>>>>>>>>>>>");
+                            
+                            OpenIDBundlingViewController* reg = [[OpenIDBundlingViewController alloc] init];
+                            
+                            
+                            NSDictionary *dict = [[NSDictionary alloc] initWithObjectsAndKeys:mcFacebook.email, @"EMAIL", @"OTT_ARDI", @"SYS_ID",LOGIN_TYPE_FACEBOOK,@"LOGIN_TYPE",mcFacebook.facebookID,@"LOGIN_UID",[resultJSON objectForKey:@"VALID_STR"],@"VALID_STR",[resultJSON objectForKey:@"CHECK_DATE"],@"CHECK_DATE", nil];
+                            
+                            [reg setResultJason:dict];
+                            
+                            UIViewController* rootViewController = [[UIApplication sharedApplication].keyWindow rootViewController];
+                            MCLogger(@"FBLogin>>>>>>>>>>>>>presentViewController>>>>>>>>>>>>>>");
+                            [rootViewController presentViewController:reg animated:YES completion:^{}];
+                            
+                            
+                        }
+
                     }
                      failure:^(NSError *error) {
-                         
+                       NSLog(@"getUser error");
                      }];
                 }
               failure:^(NSError *error) {
-                  
+               NSLog(@"login error");
               }];
-    
-    
 }
 
 

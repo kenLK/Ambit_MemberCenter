@@ -18,6 +18,7 @@
 		3311D26B1A0A267A004259CA /* GooglePlus.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3311D2681A0A267A004259CA /* GooglePlus.bundle */; };
 		3311D26C1A0A267A004259CA /* GooglePlus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3311D2691A0A267A004259CA /* GooglePlus.framework */; };
 		3328E4231A5A3AD3004AA160 /* OpenIDFacebookLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3328E4221A5A3AD3004AA160 /* OpenIDFacebookLoginViewController.m */; };
+		3328E4271A5A70EA004AA160 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3328E4261A5A70EA004AA160 /* MediaPlayer.framework */; };
 		333642BB1A16085500229459 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 333642BA1A16085500229459 /* Social.framework */; };
 		3337B03919F5F84F00A24624 /* OpenIDBundlingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3337B03819F5F84F00A24624 /* OpenIDBundlingViewController.m */; };
 		335B3F1A1A39B47700C1B0E9 /* APTGViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 335B3F191A39B47700C1B0E9 /* APTGViewController.m */; };
@@ -28,7 +29,6 @@
 		3379A1F21A0CB9DD002E2E4B /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3379A1F11A0CB9DD002E2E4B /* CoreMotion.framework */; };
 		3379A1F41A0CB9EC002E2E4B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3379A1F31A0CB9EC002E2E4B /* CoreGraphics.framework */; };
 		3379A1F61A0CB9F6002E2E4B /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3379A1F51A0CB9F6002E2E4B /* CoreText.framework */; };
-		3379A1F71A0CBA04002E2E4B /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3379A1E81A0CB983002E2E4B /* MediaPlayer.framework */; };
 		3379A1F91A0CBA12002E2E4B /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3379A1F81A0CBA12002E2E4B /* Security.framework */; };
 		3379A1FB1A0CBA1C002E2E4B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3379A1FA1A0CBA1C002E2E4B /* SystemConfiguration.framework */; };
 		3379A1FD1A0CBA25002E2E4B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3379A1FC1A0CBA25002E2E4B /* UIKit.framework */; };
@@ -75,13 +75,13 @@
 		3311D2691A0A267A004259CA /* GooglePlus.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GooglePlus.framework; sourceTree = "<group>"; };
 		3328E4211A5A3AD3004AA160 /* OpenIDFacebookLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenIDFacebookLoginViewController.h; sourceTree = "<group>"; };
 		3328E4221A5A3AD3004AA160 /* OpenIDFacebookLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenIDFacebookLoginViewController.m; sourceTree = "<group>"; };
+		3328E4261A5A70EA004AA160 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		333642BA1A16085500229459 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		3337B03719F5F84F00A24624 /* OpenIDBundlingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenIDBundlingViewController.h; sourceTree = "<group>"; };
 		3337B03819F5F84F00A24624 /* OpenIDBundlingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenIDBundlingViewController.m; sourceTree = "<group>"; };
 		335B3F181A39B47700C1B0E9 /* APTGViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APTGViewController.h; sourceTree = "<group>"; };
 		335B3F191A39B47700C1B0E9 /* APTGViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APTGViewController.m; sourceTree = "<group>"; };
 		3379A1E61A0CB952002E2E4B /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
-		3379A1E81A0CB983002E2E4B /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		3379A1EB1A0CB9B0002E2E4B /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		3379A1ED1A0CB9C1002E2E4B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		3379A1EF1A0CB9CE002E2E4B /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -112,12 +112,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3328E4271A5A70EA004AA160 /* MediaPlayer.framework in Frameworks */,
 				33DF78ED1A47F4C600BA3CCD /* MC.framework in Frameworks */,
 				333642BB1A16085500229459 /* Social.framework in Frameworks */,
 				3379A1FD1A0CBA25002E2E4B /* UIKit.framework in Frameworks */,
 				3379A1FB1A0CBA1C002E2E4B /* SystemConfiguration.framework in Frameworks */,
 				3379A1F91A0CBA12002E2E4B /* Security.framework in Frameworks */,
-				3379A1F71A0CBA04002E2E4B /* MediaPlayer.framework in Frameworks */,
 				3379A1F61A0CB9F6002E2E4B /* CoreText.framework in Frameworks */,
 				3379A1F41A0CB9EC002E2E4B /* CoreGraphics.framework in Frameworks */,
 				3379A1F21A0CB9DD002E2E4B /* CoreMotion.framework in Frameworks */,
@@ -223,23 +223,23 @@
 		330FB73819E269550015D20A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				33DF78EC1A47F4C600BA3CCD /* MC.framework */,
-				333642BA1A16085500229459 /* Social.framework */,
-				3379A1FC1A0CBA25002E2E4B /* UIKit.framework */,
-				3379A1FA1A0CBA1C002E2E4B /* SystemConfiguration.framework */,
-				3379A1F81A0CBA12002E2E4B /* Security.framework */,
-				3379A1F51A0CB9F6002E2E4B /* CoreText.framework */,
-				3379A1F31A0CB9EC002E2E4B /* CoreGraphics.framework */,
-				3379A1F11A0CB9DD002E2E4B /* CoreMotion.framework */,
-				3379A1EF1A0CB9CE002E2E4B /* CoreLocation.framework */,
-				3379A1ED1A0CB9C1002E2E4B /* Foundation.framework */,
-				3379A1EB1A0CB9B0002E2E4B /* AssetsLibrary.framework */,
-				3379A1E81A0CB983002E2E4B /* MediaPlayer.framework */,
 				3379A1E61A0CB952002E2E4B /* AddressBook.framework */,
+				3379A1EB1A0CB9B0002E2E4B /* AssetsLibrary.framework */,
+				3379A1F31A0CB9EC002E2E4B /* CoreGraphics.framework */,
+				3379A1EF1A0CB9CE002E2E4B /* CoreLocation.framework */,
+				3379A1F11A0CB9DD002E2E4B /* CoreMotion.framework */,
+				3379A1F51A0CB9F6002E2E4B /* CoreText.framework */,
+				330FB73919E269680015D20A /* FacebookSDK.framework */,
+				3379A1ED1A0CB9C1002E2E4B /* Foundation.framework */,
 				3311D2671A0A2679004259CA /* GoogleOpenSource.framework */,
 				3311D2681A0A267A004259CA /* GooglePlus.bundle */,
 				3311D2691A0A267A004259CA /* GooglePlus.framework */,
-				330FB73919E269680015D20A /* FacebookSDK.framework */,
+				33DF78EC1A47F4C600BA3CCD /* MC.framework */,
+				3328E4261A5A70EA004AA160 /* MediaPlayer.framework */,
+				3379A1F81A0CBA12002E2E4B /* Security.framework */,
+				333642BA1A16085500229459 /* Social.framework */,
+				3379A1FA1A0CBA1C002E2E4B /* SystemConfiguration.framework */,
+				3379A1FC1A0CBA25002E2E4B /* UIKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -293,7 +293,7 @@
 				TargetAttributes = {
 					330FB70A19E264A30015D20A = {
 						CreatedOnToolsVersion = 6.0.1;
-						DevelopmentTeam = F89MMV8GNU;
+						DevelopmentTeam = EMK863ZW2D;
 					};
 					330FB72319E264A30015D20A = {
 						CreatedOnToolsVersion = 6.0.1;
@@ -482,7 +482,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: SHIH-SHENG CHANG (ZQ97F2CTNA)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -493,7 +493,7 @@
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "a0fc40d7-6083-4ec6-a18a-5d256e8fdf08";
 				VALID_ARCHS = "armv7s armv7";
 			};
 			name = Debug;
@@ -502,7 +502,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: SHIH-SHENG CHANG (ZQ97F2CTNA)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -513,7 +513,7 @@
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "a0fc40d7-6083-4ec6-a18a-5d256e8fdf08";
 				VALID_ARCHS = "armv7s armv7";
 			};
 			name = Release;

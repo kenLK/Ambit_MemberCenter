@@ -17,18 +17,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q3P-fd-dj7">
-                                <rect key="frame" x="74" y="195" width="185" height="30"/>
-                                <state key="normal" title="Facebook 登入">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="80" y="217" width="186" height="30"/>
-                                </variation>
-                                <connections>
-                                    <action selector="FBLogin:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="P8T-7c-i4C"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nqW-94-R9a">
                                 <rect key="frame" x="118" y="252" width="159" height="30"/>
                                 <state key="normal" title="Facebook_2_step login">
