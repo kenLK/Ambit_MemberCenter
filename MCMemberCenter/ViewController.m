@@ -130,7 +130,7 @@
                     [mcFacebook getUser:^(id responseObject) {
 
                         NSData* responseData = (NSData*)responseObject;
-                        MCLogger(@"%@",[[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding]);
+                        MCLogger(@"mcFacebook getUser : %@",[[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding]);
                         
                         
                         NSDictionary *resultJSON = [NSJSONSerialization JSONObjectWithData:responseData options:kNilOptions error:nil];
@@ -140,7 +140,7 @@
                             
                             MCLogger(@"FBLogin>>>>>>>>>>>>>-429>>>>>>>>>>>>>>");
                             
-                            NSDictionary *dict = [[NSDictionary alloc] initWithObjectsAndKeys:mcFacebook.email, @"EMAIL", @"OTT_ARDI", @"SYS_ID",LOGIN_TYPE_FACEBOOK,@"LOGIN_TYPE",mcFacebook.facebookID,@"LOGIN_UID",[resultJSON objectForKey:@"VALID_STR"],@"VALID_STR",[resultJSON objectForKey:@"CHECK_DATE"],@"CHECK_DATE", nil];
+                            NSDictionary *dict = [[NSDictionary alloc] initWithObjectsAndKeys:mcFacebook.email, @"EMAIL", @"OTT_ARDI", @"SYS_ID",LOGIN_TYPE_FACEBOOK,@"LOGIN_TYPE",[resultJSON objectForKey:@"LOGIN_UID"],@"LOGIN_UID",[resultJSON objectForKey:@"VALID_STR"],@"VALID_STR",[resultJSON objectForKey:@"CHECK_DATE"],@"CHECK_DATE", nil];
                             
                             RegisterViewController* reg = [[RegisterViewController alloc] init];
                             [reg setResultJason:dict];
@@ -159,7 +159,7 @@
                             OpenIDBundlingViewController* reg = [[OpenIDBundlingViewController alloc] init];
                             
                             
-                            NSDictionary *dict = [[NSDictionary alloc] initWithObjectsAndKeys:mcFacebook.email, @"EMAIL", @"OTT_ARDI", @"SYS_ID",LOGIN_TYPE_FACEBOOK,@"LOGIN_TYPE",mcFacebook.facebookID,@"LOGIN_UID",[resultJSON objectForKey:@"VALID_STR"],@"VALID_STR",[resultJSON objectForKey:@"CHECK_DATE"],@"CHECK_DATE", nil];
+                            NSDictionary *dict = [[NSDictionary alloc] initWithObjectsAndKeys:mcFacebook.email, @"EMAIL", @"OTT_ARDI", @"SYS_ID",LOGIN_TYPE_FACEBOOK,@"LOGIN_TYPE",[resultJSON objectForKey:@"LOGIN_UID"],@"LOGIN_UID",[resultJSON objectForKey:@"VALID_STR"],@"VALID_STR",[resultJSON objectForKey:@"CHECK_DATE"],@"CHECK_DATE", nil];
                             
                             [reg setResultJason:dict];
                             
