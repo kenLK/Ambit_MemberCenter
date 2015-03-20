@@ -20,12 +20,13 @@
 @property (assign) BOOL isGoogleLogin;
 @property (assign) BOOL isTwitterLogin;
 @property (assign) BOOL isSinaWeiboLogin;
+@property (assign) BOOL isYahooLogin;
 
 @end
 
 @implementation ViewController
 
-@synthesize mcFacebook,mWebView,accountStore,isGoogleLogin,isTwitterLogin,isSinaWeiboLogin;
+@synthesize mcFacebook,mWebView,accountStore,isGoogleLogin,isTwitterLogin,isSinaWeiboLogin, isYahooLogin;
 
 
 - (id) init
@@ -225,77 +226,6 @@
 }
 
 
-
-- (IBAction)FBLogin:(id)sender {
-    
-    MCLogger(@"FBLogin>>>>>>>>>>>>>INTO>>>>>>>>>>>>>>");
-    
-    //  取得facebook用戶資料
-    /*[mcFacebook getUserInfoWithSuccess:^(id responseObject) {
-     NSDictionary *user = (NSDictionary*)responseObject;
-     
-     //  login MC
-     if (user) {
-     MCLogin* mcl = [[MCLogin alloc] init];
-     NSString* EMAIL = [user objectForKey:@"email"];
-     NSString* OPEN_UID = [user objectForKey:@"id"];
-     [mcl GetAmbitUserInfoViaOpenID:EMAIL
-     openUID:OPEN_UID
-     login_type:LOGIN_TYPE_FACEBOOK
-     sysID:@"OTT_ARDI"
-     success:^(id responseObject) {
-     NSData* responseData = (NSData*)responseObject;
-     MCLogger(@"%@",[[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding]);
-     
-     
-     NSDictionary *resultJSON = [NSJSONSerialization JSONObjectWithData:responseData options:kNilOptions error:nil];
-     
-     if ([[resultJSON objectForKey:@"returnCode"] isEqual:@"-429"]) {
-     
-     MCLogger(@"FBLogin>>>>>>>>>>>>>-429>>>>>>>>>>>>>>");
-     
-     NSDictionary *dict = [[NSDictionary alloc] initWithObjectsAndKeys:EMAIL, @"EMAIL", @"OTT_ARDI", @"SYS_ID",LOGIN_TYPE_FACEBOOK,@"LOGIN_TYPE",OPEN_UID,@"LOGIN_UID",[resultJSON objectForKey:@"VALID_STR"],@"VALID_STR",[resultJSON objectForKey:@"CHECK_DATE"],@"CHECK_DATE", nil];
-     
-     RegisterViewController* reg = [[RegisterViewController alloc] init];
-     [reg setResultJason:dict];
-     
-     UIViewController* rootViewController = [[UIApplication sharedApplication].keyWindow rootViewController];
-     MCLogger(@"FBLogin>>>>>>>>>>>>>presentViewController>>>>>>>>>>>>>>");
-     [rootViewController presentViewController:reg animated:YES completion:^{}];
-     
-     
-     }
-     if ([[resultJSON objectForKey:@"returnCode"] isEqual:@"-430"]) {
-     
-     MCLogger(@"FBLogin>>>>>>>>>>>>>-430>>>>>>>>>>>>>>");
-     
-     OpenIDBundlingViewController* reg = [[OpenIDBundlingViewController alloc] init];
-     
-     
-     NSDictionary *dict = [[NSDictionary alloc] initWithObjectsAndKeys:EMAIL, @"EMAIL", @"OTT_ARDI", @"SYS_ID",LOGIN_TYPE_FACEBOOK,@"LOGIN_TYPE",OPEN_UID,@"LOGIN_UID",[resultJSON objectForKey:@"VALID_STR"],@"VALID_STR",[resultJSON objectForKey:@"CHECK_DATE"],@"CHECK_DATE", nil];
-     
-     [reg setResultJason:dict];
-     
-     UIViewController* rootViewController = [[UIApplication sharedApplication].keyWindow rootViewController];
-     MCLogger(@"FBLogin>>>>>>>>>>>>>presentViewController>>>>>>>>>>>>>>");
-     [rootViewController presentViewController:reg animated:YES completion:^{}];
-     
-     
-     }
-     } failure:^(NSError *error) {
-     
-     }];
-     
-     }
-     }
-     failure:^(NSError *error) {
-     
-     }];
-     */
-    MCLogger(@"FBLogin>>>>>>>>>>>>>END>>>>>>>>>>>>>>");
-}
-
-
 - (IBAction)facebook2Step:(id)sender {
     //  登入facebook用戶資料
     [mcFacebook login:^(id responseObject) {
@@ -422,5 +352,70 @@
     
     MCLogger(@">>>>>END>>>>>>>");
     
+}
+
+- (IBAction)yahooLogin:(id)sender {
+    MCLogger(@"YahooLogin>>>>>>>>>>>>>INTO>>>>>>>>>>>>>>");
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    [appDelegate createYahooSession];
+    NSLog(@"yahoo create finish>>>>>");
+}
+- (void)loadYahooUserProfile:(NSMutableDictionary *)params{
+    NSLog(@"loadYahooUserProfile>>>>>");
+    NSString *yahooGuid = [params objectForKey:@"yahooGuid"];
+    NSLog(@"Yahoo GUID: %@", yahooGuid);
+    NSString *yahooEmail = [params objectForKey:@"yahooEmail"];
+    MCLogger(@"viewWillAppear>>>yahooEmail>>>%@",yahooEmail);
+    MCLogin* mcl = [[MCLogin alloc] init];
+    [mcl GetAmbitUserInfoViaOpenID:yahooEmail
+                           openUID:yahooGuid
+                        login_type:LOGIN_TYPE_YAHOO
+                             sysID:@"OTT_ARDI"
+                           idGroup:@""
+                           success:^(id responseObject) {
+                               
+                               NSData* responseData = (NSData*)responseObject;
+                               MCLogger(@"%@",[[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding]);
+                               
+                               
+                               NSDictionary *resultJSON = [NSJSONSerialization JSONObjectWithData:responseData options:kNilOptions error:nil];
+                               
+                               if ([[resultJSON objectForKey:@"returnCode"] isEqual:@"-429"]) {
+                                   MCLogger(@"YahooLogin>>>>>>>>>>>>>-429>>>>>>>>>>>>>>");
+                                   
+                                   NSDictionary *dict = [[NSDictionary alloc] initWithObjectsAndKeys:yahooEmail, @"EMAIL", @"OTT_ARDI", @"SYS_ID",LOGIN_TYPE_YAHOO,@"LOGIN_TYPE",yahooGuid,@"LOGIN_UID",[resultJSON objectForKey:@"VALID_STR"],@"VALID_STR",[resultJSON objectForKey:@"CHECK_DATE"],@"CHECK_DATE", nil];
+                                   
+                                   RegisterViewController* reg = [[RegisterViewController alloc] init];
+                                   [reg setResultJason:dict];
+                                   [reg setLOGIN_TYPE:@"Yahoo"];
+                                   
+                                   UIViewController* rootViewController = [[UIApplication sharedApplication].keyWindow rootViewController];
+                                   MCLogger(@"YahooLogin>>>>>>>>>>>>>presentViewController>>>>>>>>>>>>>>");
+                                   [rootViewController presentViewController:reg animated:YES completion:^{}];
+                               }
+                               
+                               if ([[resultJSON objectForKey:@"returnCode"] isEqual:@"-430"]) {
+                                   
+                                   MCLogger(@"YahooLogin>>>>>>>>>>>>>-430>>>>>>>>>>>>>>");
+                                   
+                                   OpenIDBundlingViewController* reg = [[OpenIDBundlingViewController alloc] init];
+                                   
+                                   
+                                   NSDictionary *dict = [[NSDictionary alloc] initWithObjectsAndKeys:yahooEmail, @"EMAIL", @"OTT_ARDI", @"SYS_ID",LOGIN_TYPE_YAHOO,@"LOGIN_TYPE",yahooGuid,@"LOGIN_UID",[resultJSON objectForKey:@"VALID_STR"],@"VALID_STR",[resultJSON objectForKey:@"CHECK_DATE"],@"CHECK_DATE", nil];
+                                   
+                                   [reg setResultJason:dict];
+                                   [reg setLOGIN_TYPE:@"Yahoo"];
+                                   
+                                   UIViewController* rootViewController = [[UIApplication sharedApplication].keyWindow rootViewController];
+                                   MCLogger(@"YahooLogin>>>>>>>>>>>>>presentViewController>>>>>>>>>>>>>>");
+                                   [rootViewController presentViewController:reg animated:YES completion:^{}];
+                                   
+                                   
+                               }
+                               
+                               NSLog(@"Yahoo登入成功~~~~~~~");
+                           } failure:^(NSError *error) {
+                               
+                           }];
 }
 @end
