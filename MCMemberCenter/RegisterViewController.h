@@ -12,7 +12,7 @@
 #import "OpenIDBundlingViewController.h"
 @interface RegisterViewController : UIViewController<UITextFieldDelegate>
 
-@property (strong, nonatomic) NSDictionary *resultJason;
+@property (strong, nonatomic) NSMutableDictionary *resultJason;
 
 
 @property (strong, nonatomic) IBOutlet UITextField *email;

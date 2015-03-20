@@ -33,18 +33,17 @@
     email.delegate = self;
     [self.view addSubview:email];
     
-    
     UILabel *titleLabelPhone = [[UILabel alloc] initWithFrame:CGRectMake(30, 80, 120.0, 20.0)];
     [titleLabelPhone setText:@"phone"];
     [titleLabelPhone setFont:[UIFont boldSystemFontOfSize:20]];
     [self.view addSubview:titleLabelPhone];
     
-    UITextField *inputTextPhone = [[UITextField alloc] initWithFrame:CGRectMake(100, 80, 320.0, 20.0)];
-    inputTextPhone.borderStyle = UITextBorderStyleRoundedRect;
+    phone = [[UITextField alloc] initWithFrame:CGRectMake(100, 80, 320.0, 20.0)];
+    phone.borderStyle = UITextBorderStyleRoundedRect;
     //    [inputText setText:[content objectAtIndex:MPItemTitle]];
-    [inputTextPhone setFont:[UIFont boldSystemFontOfSize:20]];
-    inputTextPhone.delegate=self;
-    [self.view addSubview:inputTextPhone];
+    [phone setFont:[UIFont boldSystemFontOfSize:20]];
+    phone.delegate=self;
+    [self.view addSubview:phone];
     
     
     UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
@@ -74,6 +73,14 @@
     NSLog(@"%@",[resultJason objectForKey:@"returnCode"]);
     NSLog(@"%@",[resultJason objectForKey:@"VALID_STR"]);
     NSLog(@"%@",[resultJason objectForKey:@"CHECK_DATE"]);
+    
+    if ([resultJason objectForKey:@"EMAIL"] != nil) {
+        email.text = [resultJason objectForKey:@"EMAIL"];
+    }
+    
+    if ([resultJason objectForKey:@"PHONE"] != nil) {
+        phone.text = [resultJason objectForKey:@"PHONE"];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -120,20 +127,31 @@
 //    NSString* CHECK_DATE = [resultJason objectForKey:@"CHECK_DATE"];
 //    NSString* VALID_EMAIL_STR = [resultJason objectForKey:@"VALID_EMAIL_STR"];
 //    NSString* returnCode = [resultJason objectForKey:@"returnCode"];
-//    [resultJason setValue:[self email].text forKey:@"EMAIL"];
-//    [resultJason setValue:[self phone].text forKey:@"PHONE"];
+    resultJason = [resultJason mutableCopy];
+    [resultJason removeObjectForKey:@"EMAIL"];
+    
+    [resultJason removeObjectForKey:@"PHONE"];
+    [resultJason setValue:[self email].text forKey:@"EMAIL"];
+    [resultJason setValue:[self phone].text forKey:@"PHONE"];
+   
+    
+    
     
     for(NSString *key in [resultJason allKeys]) {
         NSLog(@"%@",[resultJason objectForKey:key]);
     }
     
-    
     NSString *aLOGIN_TYPE = LOGIN_TYPE_FACEBOOK;
-    
-    if ([@"Yahoo"isEqualToString:LOGIN_TYPE]) {
-        aLOGIN_TYPE = LOGIN_TYPE_YAHOO;
-        NSLog(@"aLOGIN_TYPE %@", aLOGIN_TYPE);
+    if (![@"" isEqualToString:[resultJason objectForKey:@"LOGIN_TYPE"]] && [resultJason objectForKey:@"LOGIN_TYPE"] != nil) {
+        aLOGIN_TYPE = [resultJason objectForKey:@"LOGIN_TYPE"];
     }
+    
+//    NSString *aLOGIN_TYPE = LOGIN_TYPE_FACEBOOK;
+//    
+//    if ([@"Yahoo"isEqualToString:LOGIN_TYPE]) {
+//        aLOGIN_TYPE = LOGIN_TYPE_YAHOO;
+//        NSLog(@"aLOGIN_TYPE %@", aLOGIN_TYPE);
+//    }
     
     NSString* returnJason = [mcl RegisterAmbitUserInfoViaOpenID:aLOGIN_TYPE registerValue:resultJason];
     
