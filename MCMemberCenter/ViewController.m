@@ -45,7 +45,7 @@
     //    [_fbLoginView setReadPermissions:@[@"public_profile"]];
     //    [_fbLoginView setDelegate:self];
     //    _objectID = nil;
-    
+    MCLogger(@"viewDidLoad>>>>>>>>>>");
     mcFacebook = [[MCFacebook alloc] init];
 }
 - (void)viewWillAppear:(BOOL)animated {
@@ -373,7 +373,7 @@
                              sysID:@"OTT_ARDI"
                            idGroup:@""
                            success:^(id responseObject) {
-                               
+ 
                                NSData* responseData = (NSData*)responseObject;
                                MCLogger(@"%@",[[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding]);
                                
@@ -414,6 +414,8 @@
                                }
                                
                                NSLog(@"Yahoo登入成功~~~~~~~");
+                               
+                               MCLogger(@"YahooLogin>>>>>>>>>>>>>presentViewController>>>>>>>>>>>>>>");
                            } failure:^(NSError *error) {
                                
                            }];

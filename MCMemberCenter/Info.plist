@@ -36,6 +36,16 @@
 				<string>com.acer.KE9KTestEZ</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>com.nou.nou</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.nou.nou</string>
+			</array>
+		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>

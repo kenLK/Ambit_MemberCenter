@@ -37,8 +37,8 @@
     self.mWebView = [[UIWebView alloc] initWithFrame:webFrame];
     //    page = [[MCLogin alloc] init];
     //                                    page = [[MCLogin alloc] initWithWebView:self.mWebView toUrl:[dict objectForKey:@"bundlingSDKURL"]];
-    MCLogger(@"webview>>>>>>%@",[dict objectForKey:@"bundlingPasswordSDKURL"]);
-    NSString* bundlingSDKURL = (NSString*)[dict objectForKey:@"bundlingPasswordSDKURL"];
+    MCLogger(@"webview>>>>>>%@",[dict objectForKey:@"bundlingSDKURL"]);
+    NSString* bundlingSDKURL = (NSString*)[dict objectForKey:@"bundlingSDKURL"];
     /*
      ?SDK=IOS
      &VALID_STR=NzFmODM3MTg3MTNmMGFjMjdmODcxYmU5MDllNzRjNTgxNzM5NGQ0Zg--
@@ -50,19 +50,25 @@
      */
     
     NSString *aLOGIN_TYPE = LOGIN_TYPE_FACEBOOK;
-    
-    if ([@"Yahoo"isEqualToString:LOGIN_TYPE]) {
-        aLOGIN_TYPE = LOGIN_TYPE_YAHOO;
-        NSLog(@"aLOGIN_TYPE %@", aLOGIN_TYPE);
+    if (![@"" isEqualToString:[resultJason objectForKey:@"LOGIN_TYPE"]] && [resultJason objectForKey:@"LOGIN_TYPE"] != nil) {
+        aLOGIN_TYPE = [resultJason objectForKey:@"LOGIN_TYPE"];
     }
+    
+//    NSString *aLOGIN_TYPE = LOGIN_TYPE_FACEBOOK;
+//    
+//    if ([@"Yahoo"isEqualToString:LOGIN_TYPE]) {
+//        aLOGIN_TYPE = LOGIN_TYPE_YAHOO;
+//        NSLog(@"aLOGIN_TYPE %@", aLOGIN_TYPE);
+//    }
     
     bundlingSDKURL=[bundlingSDKURL stringByAppendingFormat:@"?SDK=IOS"];
     bundlingSDKURL=[bundlingSDKURL stringByAppendingFormat:@"&VALID_STR=%@",[resultJason objectForKey:@"VALID_STR"]];
-    bundlingSDKURL=[bundlingSDKURL stringByAppendingFormat:@"&LOGIN_TYPE=%@",aLOGIN_TYPE];
+    bundlingSDKURL=[bundlingSDKURL stringByAppendingFormat:@"&LOGIN_TYPE=%@", aLOGIN_TYPE];
     bundlingSDKURL=[bundlingSDKURL stringByAppendingFormat:@"&LOGIN_UID=%@",[resultJason objectForKey:@"LOGIN_UID"]];
     bundlingSDKURL=[bundlingSDKURL stringByAppendingFormat:@"&CHECK_DATE=%@",[resultJason objectForKey:@"CHECK_DATE"]];
     bundlingSDKURL=[bundlingSDKURL stringByAppendingFormat:@"&ACCOUNT_TYPE=EMAIL"];
     bundlingSDKURL=[bundlingSDKURL stringByAppendingFormat:@"&ACCOUNT=%@",[resultJason objectForKey:@"EMAIL"]];
+    bundlingSDKURL=[bundlingSDKURL stringByAppendingFormat:@"&SYS_ID=%@",[dict objectForKey:@"OTT_NAME"]];
     
     page = [[MCLogin alloc] initOpenIDDuplicate:self.mWebView toURL:bundlingSDKURL];
     //                                    page = [[MCLogin alloc] initWithWebView:self.web forState:MCUserBundling ];

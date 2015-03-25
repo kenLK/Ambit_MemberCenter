@@ -134,7 +134,7 @@
 //    BOOL wasHandled = [FBAppCall handleOpenURL:url sourceApplication:sourceApplication];
     
     // You can add your app-specific url handling code here if needed
-    if ([[url absoluteString] rangeOfString:@"com.acer.ke9ktestez"].location ==            NSNotFound)
+    if ([[url absoluteString] rangeOfString:@"com.nou.nou"].location ==            NSNotFound)
     {
         // Call FBAppCall's handleOpenURL:sourceApplication to handle Facebook app responses
         BOOL wasHandled = [FBAppCall handleOpenURL:url sourceApplication:sourceApplication];
