@@ -57,6 +57,13 @@
         NSUserDefaults* userPrefs = [NSUserDefaults standardUserDefaults];
 
         MCLogger(@"resultJason>>>>>>>>>%@>>>>>>>>", [userPrefs objectForKey:@"returnJason"]);
+        NSData* data = [[userPrefs objectForKey:@"returnJason"] dataUsingEncoding:NSUTF8StringEncoding];
+        NSDictionary *resultJSON = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
+        
+        [userPrefs setObject:[resultJSON objectForKey:@"uid"] forKey:@"aptgUID"];
+        [userPrefs setObject:[resultJSON objectForKey:@"email"] forKey:@"aptgEmail"];
+        [userPrefs setObject:[resultJSON objectForKey:@"mdn"] forKey:@"aptgMDN"];
+        [userPrefs synchronize];
         
         [self dismissViewControllerAnimated:YES completion:^{}];
     }

@@ -21,12 +21,12 @@
 @property (assign) BOOL isTwitterLogin;
 @property (assign) BOOL isSinaWeiboLogin;
 @property (assign) BOOL isYahooLogin;
-
+@property (assign) BOOL isAPTGLogin;
 @end
 
 @implementation ViewController
 
-@synthesize mcFacebook,mWebView,accountStore,isGoogleLogin,isTwitterLogin,isSinaWeiboLogin, isYahooLogin;
+@synthesize mcFacebook,mWebView,accountStore,isGoogleLogin,isTwitterLogin,isSinaWeiboLogin, isYahooLogin, isAPTGLogin;
 
 
 - (id) init
@@ -205,6 +205,61 @@
                                        
                                        
                                        NSDictionary *dict = [[NSDictionary alloc] initWithObjectsAndKeys:sinaWeiboUserEmail, @"EMAIL", @"OTT_ARDI", @"SYS_ID",LOGIN_TYPE_TWITTER,@"LOGIN_TYPE",sinaWeiboUserID,@"LOGIN_UID",[resultJSON objectForKey:@"VALID_STR"],@"VALID_STR",[resultJSON objectForKey:@"CHECK_DATE"],@"CHECK_DATE", nil];
+                                       
+                                       [reg setResultJason:dict];
+                                       
+                                       UIViewController* rootViewController = [[UIApplication sharedApplication].keyWindow rootViewController];
+                                       MCLogger(@"FBLogin>>>>>>>>>>>>>presentViewController>>>>>>>>>>>>>>");
+                                       [rootViewController presentViewController:reg animated:YES completion:^{}];
+                                       
+                                       
+                                   }
+                               } failure:^(NSError *error) {
+                                   
+                               }];
+    } else if (isAPTGLogin == YES) {
+        NSString* aptgUID = [[NSUserDefaults standardUserDefaults] objectForKey:@"aptgUID"];
+        NSString* aptgEmail = [[NSUserDefaults standardUserDefaults] objectForKey:@"aptgEmail"];
+        NSString* aptgMDN = [[NSUserDefaults standardUserDefaults] objectForKey:@"aptgMDN"];
+        MCLogger(@"viewWillAppear>>>>>>%@",aptgUID);
+        MCLogger(@"viewWillAppear>>>>>>%@",aptgEmail);
+        
+        MCLogin* mcl = [[MCLogin alloc] init];
+        
+        [mcl GetAmbitUserInfoViaOpenID:aptgEmail
+                               openUID:aptgUID
+                            login_type:LOGIN_TYPE_APTG
+                                 sysID:@"OTT_ARDI"
+                               idGroup:@""
+                               success:^(id responseObject) {
+                                   
+                                   NSData* responseData = (NSData*)responseObject;
+                                   MCLogger(@"%@",[[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding]);
+                                   
+                                   
+                                   NSDictionary *resultJSON = [NSJSONSerialization JSONObjectWithData:responseData options:kNilOptions error:nil];
+                                   
+                                   if ([[resultJSON objectForKey:@"returnCode"] isEqual:@"-429"]) {
+                                       MCLogger(@"FBLogin>>>>>>>>>>>>>-429>>>>>>>>>>>>>>");
+                                       
+                                       NSDictionary *dict = [[NSDictionary alloc] initWithObjectsAndKeys:aptgEmail, @"EMAIL",aptgMDN, @"PHONE", @"OTT_ARDI", @"SYS_ID",LOGIN_TYPE_SINAWEIBO,@"LOGIN_TYPE",aptgUID,@"LOGIN_UID",[resultJSON objectForKey:@"VALID_STR"],@"VALID_STR",[resultJSON objectForKey:@"CHECK_DATE"],@"CHECK_DATE", nil];
+                                       
+                                       RegisterViewController* reg = [[RegisterViewController alloc] init];
+                                       [reg setResultJason:dict];
+                                       
+                                       UIViewController* rootViewController = [[UIApplication sharedApplication].keyWindow rootViewController];
+                                       MCLogger(@"FBLogin>>>>>>>>>>>>>presentViewController>>>>>>>>>>>>>>");
+                                       [rootViewController presentViewController:reg animated:YES completion:^{}];
+                                   }
+                                   
+                                   if ([[resultJSON objectForKey:@"returnCode"] isEqual:@"-430"]) {
+                                       
+                                       MCLogger(@"FBLogin>>>>>>>>>>>>>-430>>>>>>>>>>>>>>");
+                                       
+                                       OpenIDBundlingViewController* reg = [[OpenIDBundlingViewController alloc] init];
+                                       
+                                       
+                                       NSDictionary *dict = [[NSDictionary alloc] initWithObjectsAndKeys:aptgEmail, @"EMAIL",aptgMDN, @"PHONE", @"OTT_ARDI", @"SYS_ID",LOGIN_TYPE_TWITTER,@"LOGIN_TYPE",aptgUID,@"LOGIN_UID",[resultJSON objectForKey:@"VALID_STR"],@"VALID_STR",[resultJSON objectForKey:@"CHECK_DATE"],@"CHECK_DATE", nil];
                                        
                                        [reg setResultJason:dict];
                                        
@@ -419,5 +474,16 @@
                            } failure:^(NSError *error) {
                                
                            }];
+}
+
+- (IBAction)aptgLogin:(id)sender {
+    isAPTGLogin = YES;
+    APTGViewController* aptg = [[APTGViewController alloc] init];
+    
+    UIViewController* rootViewController = [[UIApplication sharedApplication].keyWindow rootViewController];
+    MCLogger(@"aptgLogin>>>>>>>>>>>>>presentViewController>>>>>>>>>>>>>>");
+    [rootViewController presentViewController:aptg animated:YES completion:^{}];
+    
+    
 }
 @end
